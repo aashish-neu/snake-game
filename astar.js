@@ -192,3 +192,14 @@ function checkFoodFound(currentNode, food) {
 // if (checkFoodFound() == true) {
 //     alert("Food found by automatic snake");
 // }
+
+// implementing in the game
+
+/* 
+    x. Create path array with grid positions after a star completes named aiPath
+    x. Create getAiInputs() function that returns list containing path from A* algo (aiPath)
+    x. Create an event listener for button (Toggle A* Search) to run getAiInputs() function
+    x. Iterate through aiPath in getInputDirection() function from first to last --- loop
+    x. Call update() functions and draw() functions with the values from getInputDirection() function
+    x. Loop
+ */
