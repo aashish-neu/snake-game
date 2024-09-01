@@ -160,6 +160,7 @@ function checkFoodFound(currentNode, food) {
                 
                 
             }
+        }
         // maybe for loop to change currentNode in 8 direction (bottom and left successor nodes)
         for (i = currentNode.x; i > currentNode.x -1; i--) {
             for (j = currentNode.y; j > currentNode.y -1; j--) {
@@ -181,9 +182,8 @@ function checkFoodFound(currentNode, food) {
                 }
             }
         }
-        }
-
     }
+
 }
 
 
