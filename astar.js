@@ -1,3 +1,9 @@
+// defining heuristics valeus
+
+let distCurrentToNextNode = 0; //dist between current position in grid to next grid position
+let distCurrentToFinalNode = 0; //dist between current position in grid to food
+
+
 // find eucleadian distance
 
 // move in any direction
