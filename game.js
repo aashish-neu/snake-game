@@ -9,6 +9,8 @@ let gameOver = false;
 const gameBoard = document.getElementById("game-board");
 
 function main(currentTime) {
+
+    // code here to check if A* is turned on
     if (gameOver) {
         return alert("You Lose!!!");
     }
