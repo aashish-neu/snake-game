@@ -111,11 +111,12 @@ function getSuccessorNodes(currentNode) {
             successorNodeList.push(currentNode);
         }
     }
-        
+    return successorNodeList;
 }
 
 function getFCost(currentNode) {
     let currentFCost = getGCost() + getHCost();
+    return currentFCost;
 }
 
 // to check if food is found
