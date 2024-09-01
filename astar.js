@@ -98,6 +98,8 @@ function getSuccessorNodes(currentNode) {
             currentNode.y += 1;
             // pushing successorNodes in an array
             successorNodeList.push(currentNode);
+        }
+    }
 
     // maybe gets bottom and left successor nodes
     for (i = currentNode.x; i > currentNode.x -1; i--) {
