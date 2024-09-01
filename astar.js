@@ -7,6 +7,10 @@ let distCurrentToFinalNode = 0; //dist between current position in grid to food 
 
 let totalHeuristicDistance = 0; //sum of above two
 
+// initializing successor node
+
+let successorNode = [{x: 0, y: 0}];
+
 
 // find eucleadian distance
 
@@ -38,6 +42,7 @@ let totalHeuristicDistance = 0; //sum of above two
 
 let openList = [];
 let closedList = [];
+let successorNodeList = [];
 
 let euclideanDist = 0;
 
@@ -49,12 +54,12 @@ function calculateEucDist(x0, y0, x1, y1) {
 // find manhattan distance
 // move in eight direction (not diagonal)
 
-let manhattanDist = 0;
+// let manhattanDist = 0;
 
-function calculateManhatDist(x0, y0, x1, y1) {
-    manhattanDist = Math.abs(x0 - x1) + Math.abs(y0 - y1);
-    return manhattanDist;
-}
+// function calculateManhatDist(x0, y0, x1, y1) {
+//     manhattanDist = Math.abs(x0 - x1) + Math.abs(y0 - y1);
+//     return manhattanDist;
+// }
 
 // function to find smalles f cost from openList
 
@@ -74,8 +79,37 @@ function getHCost(currentNode, food) {
 // for now
 function getGCost(currentNode, successorNode) {
     // get successorNode
+    
     return calculateEucDist(currentNode.x, currentNode.y, successorNode.x, successorNode.y);
     // OR to get successorNode; get whole open list and find successorNode by iterating through open list
+}
+
+// maybe latest method to get successorNodes
+
+function getSuccessorNodes(currentNode) {
+    // maybe gets top and right successor nodes
+    for (i = currentNode.x; i < currentNode.x + 1; i++) {
+        for (j = currentNode.y; j < currentNode.y + 1; j++) {
+
+            // successorNode.x = currentNode.x;
+            // successorNode.y = currentNode.y;
+
+            currentNode.x += 1;
+            currentNode.y += 1;
+            // pushing successorNodes in an array
+            successorNodeList.push(currentNode);
+
+    // maybe gets bottom and left successor nodes
+    for (i = currentNode.x; i > currentNode.x -1; i--) {
+        for (j = currentNode.y; j > currentNode.y -1; j++) {
+
+            currentNode.x -= 1;
+            currentNode.y -= 1;
+            // pushing remaining successorNodes in the array
+            successorNodeList.push(currentNode);
+        }
+    }
+        
 }
 
 function getFCost(currentNode) {
@@ -92,19 +126,67 @@ function checkFoodFound(currentNode, food) {
 }
 
 // main loop
-function aiLoop() {
+ export function aiLoop() {
     openList[0] = [getSnakeHead()];
     // start of loop
     while(true) {
         let currentNode = getSmallestFCost();
+        // to get f-cost of current node
+        let currentNodeFCost = getFCost();
 
-        // food found condition
-        if (checkFoodFound() == true) {
-            alert("Food found by automatic snake");
+        // maybe for loop to change currentNode in 8 directions (top and right successor nodes)
+        for (i = currentNode.x; i < currentNode.x + 1; i++) {
+            for (j = currentNode.y; j < currentNode.y + 1; j++) {
+
+                currentNode.x += 1;
+                currentNode.y += 1;
+
+                // food found condition
+                if (checkFoodFound() == true) {
+                    alert("Food found by automatic snake");
+                }
+
+                openList[openList.length] = currentNode; // adding successor node to open list
+                
+                // to check if fcost is smaller
+                let tempFCost = getFCost(currentNode); //fcost of current node
+                if (tempFCost < currentNodeFCost) {
+                    let poppedNode = openList.pop();
+                    closedList.push(poppedNode);
+                }
+
+                
+                
+            }
+        // maybe for loop to change currentNode in 8 direction (bottom and left successor nodes)
+        for (i = currentNode.x; i > currentNode.x -1; i--) {
+            for (j = currentNode.y; j > currentNode.y -1; j--) {
+                currentNode.x -= 1;
+                currentNode.y -= 1;
+
+                // food found condition
+                if (checkFoodFound() == true) {
+                    alert("Food found by automatic snake");
+                }
+
+                openList[openList.length] = currentNode; // adding successor node to open list
+                
+                // to check if fcost is smaller
+                let tempFCost = getFCost(currentNode); //fcost of current node
+                if (tempFCost < currentNodeFCost) {
+                    let poppedNode = openList.pop();
+                    closedList.push(poppedNode);
+                }
+            }
         }
-
+        }
 
     }
 }
 
 
+
+// food found condition
+// if (checkFoodFound() == true) {
+//     alert("Food found by automatic snake");
+// }

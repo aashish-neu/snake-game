@@ -8,12 +8,13 @@ export function update() {
     addSegments() // call every time updates
     const inputDirection = getInputDirection();
     for (let i = snakeBody.length -2; i >= 0; i--) {
-        // need further knowledge
         snakeBody[i + 1] = { ...snakeBody[i]}; 
     }
 
     snakeBody[0].x += inputDirection.x;
     snakeBody[0].y += inputDirection.y;
+
+    // add code to move snake according to directions given by astar
 }
 
 export function draw(gameBoard) {

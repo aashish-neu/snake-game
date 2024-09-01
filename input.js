@@ -26,3 +26,5 @@ export function getInputDirection() {
     lastInputDirection = inputDirection;
     return inputDirection;
 }
+
+// get directions from astar file
