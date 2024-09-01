@@ -82,6 +82,15 @@ function getFCost(currentNode) {
     let currentFCost = getGCost() + getHCost();
 }
 
+// to check if food is found
+function checkFoodFound(currentNode, food) {
+    if (currentNode.x == food.x && currentNode.y == food.y) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 // main loop
 function aiLoop() {
     openList[0] = [getSnakeHead()];
@@ -89,7 +98,10 @@ function aiLoop() {
     while(true) {
         let currentNode = getSmallestFCost();
 
-
+        // food found condition
+        if (checkFoodFound() == true) {
+            alert("Food found by automatic snake");
+        }
 
 
     }
