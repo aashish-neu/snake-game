@@ -8,6 +8,10 @@ let lastRenderTime = 0;
 let gameOver = false;
 const gameBoard = document.getElementById("game-board");
 
+//changes
+const aiStartBtn = document.getElementById("ai-start-button");
+// aiStartBtn.innerText = "Testing";
+
 function main(currentTime) {
 
     // code here to check if A* is turned on
